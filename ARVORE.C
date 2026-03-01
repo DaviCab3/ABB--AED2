@@ -35,10 +35,10 @@ int insere_ArvBin (ArvBin* raiz , struct Municipio m){
          if (*raiz ==NULL){
             *raiz = novo;
             return 1;  // primeiro elemente
-       } else {
+       } 
             struct NO* atual = *raiz;
             struct NO* ant = NULL;
-        }
+        
             while (atual !=NULL) { // navega ate o chegar em um nó folha
                 ant = atual;
                 if (strcmp (m.nome, atual->dados.nome)== 0){
@@ -54,7 +54,7 @@ int insere_ArvBin (ArvBin* raiz , struct Municipio m){
                 ant ->dir = novo;
                else
                 ant -> esq = novo;
-        }
+        
 
         return 1;
 }
