@@ -135,8 +135,8 @@ void mostrarCidadesEmOrdem(ArvBin raiz) {
         float densidade = raiz->dados.populacao / raiz->dados.area;
 
         printf("Nome: %s\n", raiz->dados.nome);
-        printf("Área: %.3f km²\n", raiz->dados.area);
-        printf("População: %d\n", raiz->dados.populacao);
+        printf("Area: %.3f km²\n", raiz->dados.area);
+        printf("Populacao: %d\n", raiz->dados.populacao);
         printf("Densidade: %.2f hab/km²\n\n", densidade);
 
         mostrarCidadesEmOrdem(raiz->dir);
