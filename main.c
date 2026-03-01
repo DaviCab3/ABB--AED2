@@ -30,14 +30,14 @@ int main() {
     // ===============================
     // Mostrar cidades em ordem
     // ===============================
-    printf("\n===== CIDADES EM ORDEM ALFABÉTICA =====\n\n");
+    printf("\n===== CIDADES EM ORDEM ALFABETICA =====\n\n");
     mostrarCidadesEmOrdem(*raiz);
 
     // ===============================
     // Contar municípios
     // ===============================
     int total = contarMunicipios(*raiz);
-    printf("Total de municípios cadastrados: %d\n\n", total);
+    printf("Total de municipios cadastrados: %d\n\n", total);
 
     // ===============================
     // Soma da área total + percentual
@@ -45,14 +45,14 @@ int main() {
     float areaTotal = somaAreaTotal(*raiz);
     float percentual = percentualAreaBrasil(areaTotal);
 
-    printf("Área total cadastrada: %.2f km²\n", areaTotal);
-    printf("Percentual do território brasileiro: %.4f%%\n\n", percentual);
+    printf("area total cadastrada: %.2f km²\n", areaTotal);
+    printf("Percentual do territorio brasileiro: %.4f%%\n\n", percentual);
 
     // ===============================
     // Cidade com maior população
     // ===============================
     struct Municipio maior = cidadeMaiorPopulacao(*raiz);
-    printf("===== CIDADE COM MAIOR POPULAÇÃO =====\n");
+    printf("===== CIDADE COM MAIOR POPULACAO =====\n");
     printf("Nome: %s\n", maior.nome);
     printf("População: %d\n\n", maior.populacao);
 
@@ -60,7 +60,7 @@ int main() {
     // População maior que X
     // ===============================
     int X = 500000;
-    printf("===== CIDADES COM POPULAÇÃO MAIOR QUE %d =====\n", X);
+    printf("===== CIDADES COM POPULACAO MAIOR QUE %d =====\n", X);
     mostrarPopulacaoMaiorQue(*raiz, X);
     printf("\n");
 
