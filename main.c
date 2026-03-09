@@ -7,9 +7,6 @@ int main() {
 
     ArvBin* raiz = criaArv();
 
-    // ===============================
-    // Cadastro de municípios
-    // ===============================
     struct Municipio municipios[10] = {
         {"Uberlandia", 4115.0, 706597},
         {"Araguari", 2729.0, 117445},
@@ -27,54 +24,64 @@ int main() {
         insere_ArvBin(raiz, municipios[i]);
     }
 
-    // ===============================
-    // Mostrar cidades em ordem
-    // ===============================
     printf("\n===== CIDADES EM ORDEM ALFABETICA =====\n\n");
     mostrarCidadesEmOrdem(*raiz);
 
-    // ===============================
-    // Contar municípios
-    // ===============================
     int total = contarMunicipios(*raiz);
     printf("Total de municipios cadastrados: %d\n\n", total);
 
-    // ===============================
-    // Soma da área total + percentual
-    // ===============================
     float areaTotal = somaAreaTotal(*raiz);
     float percentual = percentualAreaBrasil(areaTotal);
 
-    printf("area total cadastrada: %.2f km²\n", areaTotal);
+    printf("Area total cadastrada: %.2f km²\n", areaTotal);
     printf("Percentual do territorio brasileiro: %.4f%%\n\n", percentual);
 
-    // ===============================
-    // Cidade com maior população
-    // ===============================
     struct Municipio maior = cidadeMaiorPopulacao(*raiz);
+
     printf("===== CIDADE COM MAIOR POPULACAO =====\n");
     printf("Nome: %s\n", maior.nome);
-    printf("População: %d\n\n", maior.populacao);
+    printf("Populacao: %d\n\n", maior.populacao);
 
-    // ===============================
-    // População maior que X
-    // ===============================
     int X = 500000;
     printf("===== CIDADES COM POPULACAO MAIOR QUE %d =====\n", X);
     mostrarPopulacaoMaiorQue(*raiz, X);
-    printf("\n");
 
-    // ===============================
-    // Mostrar densidade populacional
-    // ===============================
-    printf("===== DENSIDADE POPULACIONAL =====\n");
+    printf("\n===== DENSIDADE POPULACIONAL =====\n");
     mostrarDensidade(*raiz);
 
     // ===============================
-    // Liberar memória
+    // BUSCA
     // ===============================
+
+    ArvBin resultado = buscarMunicipio(*raiz, "Uberlandia");
+
+    if (resultado != NULL)
+        printf("\nMunicipio encontrado: %s\n", resultado->dados.nome);
+    else
+        printf("\nMunicipio nao encontrado\n");
+
+    // ===============================
+    // REMOÇÃO
+    // ===============================
+
+    *raiz = removerMunicipio(*raiz, "Uberaba");
+
+    printf("\nDepois da remocao:\n");
+    mostrarCidadesEmOrdem(*raiz);
+
+    // ===============================
+    // MEDIA POPULACIONAL
+    // ===============================
+
+    printf("\nMedia populacional: %.2f\n", mediaPopulacao(*raiz));
+
+    // ===============================
+    // LIBERAR MEMORIA
+    // ===============================
+
     liberarArvore(*raiz);
     free(raiz);
 
     return 0;
 }
+
