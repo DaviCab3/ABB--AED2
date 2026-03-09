@@ -1,4 +1,3 @@
-
 #ifndef ARVORE_H
 #define ARVORE_H
 
@@ -34,5 +33,10 @@ void mostrarPopulacaoMaiorQue(ArvBin raiz, int X);
 void mostrarDensidade(ArvBin raiz);
 
 struct Municipio cidadeMaiorPopulacao(ArvBin raiz);
+ArvBin buscarMunicipio(ArvBin raiz, char nome[]);
+ArvBin removerMunicipio(ArvBin raiz, char nome[]);
+float mediaPopulacao(ArvBin raiz);
+
 
 #endif
+
