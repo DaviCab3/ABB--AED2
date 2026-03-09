@@ -35,10 +35,10 @@ int insere_ArvBin (ArvBin* raiz , struct Municipio m){
          if (*raiz ==NULL){
             *raiz = novo;
             return 1;  // primeiro elemente
-       } 
+       }
             struct NO* atual = *raiz;
             struct NO* ant = NULL;
-        
+
             while (atual !=NULL) { // navega ate o chegar em um nó folha
                 ant = atual;
                 if (strcmp (m.nome, atual->dados.nome)== 0){
@@ -54,7 +54,7 @@ int insere_ArvBin (ArvBin* raiz , struct Municipio m){
                 ant ->dir = novo;
                else
                 ant -> esq = novo;
-        
+
 
         return 1;
 }
@@ -172,4 +172,95 @@ struct Municipio cidadeMaiorPopulacao(ArvBin raiz) {
 
     return maior;
 }
+
+ArvBin buscarMunicipio(ArvBin raiz, char nome[]) {
+
+    if (raiz == NULL)
+        return NULL;
+
+    int cmp = strcmp(nome, raiz->dados.nome);
+
+    if (cmp == 0)
+        return raiz;
+
+    if (cmp < 0)
+        return buscarMunicipio(raiz->esq, nome);
+
+    else
+        return buscarMunicipio(raiz->dir, nome);
+
+}
+
+
+ArvBin menorNo(ArvBin raiz) {
+
+    while (raiz->esq != NULL)
+        raiz = raiz->esq;
+
+    return raiz;
+}
+
+
+
+ArvBin removerMunicipio(ArvBin raiz, char nome[]) {
+
+    if (raiz == NULL)
+        return NULL;
+
+    int cmp = strcmp(nome, raiz->dados.nome);
+
+    if (cmp < 0)
+        raiz->esq = removerMunicipio(raiz->esq, nome);
+
+    else if (cmp > 0)
+        raiz->dir = removerMunicipio(raiz->dir, nome);
+
+    else {
+
+        if (raiz->esq == NULL) {
+            ArvBin temp = raiz->dir;
+            free(raiz);
+            return temp;
+        }
+
+        else if (raiz->dir == NULL) {
+            ArvBin temp = raiz->esq;
+            free(raiz);
+            return temp;
+        }
+
+        ArvBin temp = menorNo(raiz->dir);
+
+        raiz->dados = temp->dados;
+
+        raiz->dir = removerMunicipio(raiz->dir, temp->dados.nome);
+    }
+
+    return raiz;
+}
+
+
+int somaPopulacao(ArvBin raiz) {
+
+    if (raiz == NULL)
+        return 0;
+
+    return raiz->dados.populacao +
+           somaPopulacao(raiz->esq) +
+           somaPopulacao(raiz->dir);
+}
+
+
+
+float mediaPopulacao(ArvBin raiz) {
+
+    int total = contarMunicipios(raiz);
+    int soma = somaPopulacao(raiz);
+
+    if (total == 0)
+        return 0;
+
+    return (float)soma / total;
+}
+
 
